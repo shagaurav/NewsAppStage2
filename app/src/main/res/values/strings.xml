@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">NewsAppStage2</string>
+
+    <!-- Short name of the NEWS App-->
+    <string name="app_short_name">NA!</string>
+
+    <!-- Content description for Image in the activity_main-->
+    <string name="content_description">Image View for splash screen</string>
+
+    <!-- Internet connectivity error message-->
+    <string name="internet_error_message">No internet connection!</string>
+
+    <!-- Content error message-->
+    <string name="news_error_message">No news found!\nPlease check your Internet Connection</string>
+
+    <!-- Title of the NEWS App-->
+    <string name="title">GOD OF WAR 4 - A NEW BEGINNING</string>
+
+    <!-- Category of the NEWS App-->
+    <string name="category">Games</string>
+
+    <!-- Date of the NEWS App-->
+    <string name="date">20 April 2018</string>
+
+    <!-- Authors of the NEWS App-->
+    <string name="author">M.Sophos, R.Zangrande, G.C.Barlog</string>
+
+    <string name="fields_object">fields</string>
+
+    <string name="thumbnail">thumbnail</string>
+</resources>

@@ -1,0 +1,4 @@
+#Wed Nov 21 14:06:12 IST 2018
+base.0=F\:\\msudacity\\NewsAppStage2\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\9
+path.0=classes.dex
+renamed.0=classes.dex

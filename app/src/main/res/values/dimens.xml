@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text size of MU! in the activity_main -->
+    <dimen name="text_size">30sp</dimen>
+
+    <!-- height of image and text layout margin bottom in activity_home -->
+    <dimen name="home_image_height">200dp</dimen>
+
+    <!-- Text Screen margins for text in activity_home -->
+    <dimen name="activity_margin_top">10dp</dimen>
+
+    <!-- height and width of text on activity_main and activity_home -->
+    <dimen name="text_height">50dp</dimen>
+
+    <!-- height, width and margins of image and text on activity_main -->
+    <dimen name="android_layout_margin">150dp</dimen>
+
+    <!-- divider height in the list -->
+    <dimen name="dividerHeight">1dp</dimen>
+
+    <!--Relative layout padding-->
+    <dimen name="padding">8dp</dimen>
+
+    <!--date margin in news_list_item-->
+    <dimen name="date_margin">8dp</dimen>
+
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="image_height">75dp</dimen>
+    <dimen name="image_margin_end">6dp</dimen>
+    <dimen name="time_margin_start">8dp</dimen>
+</resources>
