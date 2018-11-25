@@ -5,20 +5,13 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/padding">
 
-    <ImageView
-        android:id="@+id/articleimage"
-        android:layout_width="@dimen/image_width"
-        android:layout_height="@dimen/image_height"
-        android:layout_marginEnd="@dimen/image_margin_end"
-        android:scaleType="centerCrop"
-        tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher" />
+
 
     <TextView
         android:id="@+id/articletitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/articleimage"
+
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/black"
         tools:text="@string/title" />
@@ -26,7 +19,7 @@
     <TextView
         android:id="@+id/articlecategory"
         style="@style/list_styling"
-        android:layout_toEndOf="@id/articleimage"
+
         android:layout_below="@id/articletitle"
         tools:text="@string/category" />
 

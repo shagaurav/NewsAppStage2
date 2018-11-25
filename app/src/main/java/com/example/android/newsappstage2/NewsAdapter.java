@@ -26,10 +26,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
 
         News currentNews = getItem( position );
-        ImageView Image = listItemView.findViewById(R.id.articleimage);
-        loadImageFromUrl(currentNews.getArticleImage(), Image);
-
-
         TextView newsTitleTextView = (TextView) listItemView.findViewById( R.id.articletitle );
         String title = currentNews.getArticleTitle();
         newsTitleTextView.setText( title );
@@ -48,24 +44,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
         newsAuthortextView.setText( author );
 
         return listItemView;
-    }
-
-    private void loadImageFromUrl(String url, ImageView Image) {
-        if (url != null) {
-            Picasso.with( getContext() ).load( url ).placeholder( R.drawable.ic_loading )
-                    .error( R.drawable.ic_no_image )
-                    .into( Image, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-
-                        @Override
-                        public void onError() {
-                        }
-                    } );
-        } else {
-            Image.setImageResource( R.drawable.ic_no_image );
-        }
     }
 
 }

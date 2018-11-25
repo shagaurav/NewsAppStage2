@@ -155,7 +155,6 @@ public class QueryUtils {
                 String category = currentResults.getString( "sectionName" );
                 String date = currentResults.getString( "webPublicationDate" );
                 String url = currentResults.getString( "webUrl" );
-                String Image = currentResults.getString( "webImage" );
 
                 JSONArray tagsauthor = currentResults.getJSONArray( "tags" );
                 String author = "";
@@ -169,7 +168,7 @@ public class QueryUtils {
 
                 // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
-                News news = new News( Title, category, date, url, author, Image );
+                News news = new News( Title, category, date, url, author );
 
                 // Add the new {@link News} to the list of news.
                 newsList.add( news );

@@ -4,18 +4,17 @@ package com.example.android.newsappstage2;
  * An {@link News} object contains information.
  */
 public class News {
-    private String articleTitle, articleCategory, articleDate, articleUrl, articleAuthor, articleImage;
+    private String articleTitle, articleCategory, articleDate, articleUrl, articleAuthor;
 
     /**
      * Constructs a new {@link News} object.
      */
-    public News(String articleTitle, String articleCategory, String articleDate, String articleUrl, String articleAuthor, String articleImage) {
+    public News(String articleTitle, String articleCategory, String articleDate, String articleUrl, String articleAuthor) {
         this.articleTitle = articleTitle;
         this.articleCategory = articleCategory;
         this.articleDate = articleDate;
         this.articleUrl = articleUrl;
         this.articleAuthor = articleAuthor;
-        this.articleImage = articleImage;
     }
 
     /**
@@ -53,8 +52,5 @@ public class News {
         return articleAuthor;
     }
 
-    public String getArticleImage() {
-        return articleImage;
-    }
 
 }

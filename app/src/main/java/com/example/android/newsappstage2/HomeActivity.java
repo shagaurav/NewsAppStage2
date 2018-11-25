@@ -4,11 +4,15 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,7 +26,7 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
     /**
      * URL for news data from the Gaurdians dataset
      */
-    private static String REQUEST_URL =
+    private static final String REQUEST_URL =
             "http://content.guardianapis.com/search?section=games&show-tags=contributor&format=json&lang=en&order-by=newest&show-fields=thumbnail&page-size=50&api-key=4b8ea716-b82a-40db-9665-d17c535526e8";
     private NewsAdapter mAdapter;
     private TextView mNoContentTextView;
@@ -105,9 +109,56 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
+    // onCreateLoader instantiates and returns a new Loader for the given ID
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String minNews = sharedPrefs.getString(getString(R.string.settings_min_news_key), getString(R.string.settings_min_news_default));
+        String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
+        String section = sharedPrefs.getString(getString(R.string.settings_section_news_key), getString(R.string.settings_section_news_default));
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+        uriBuilder.appendQueryParameter("api-key", "test");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("page-size", minNews);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+
+        if (!section.equals(getString(R.string.settings_section_news_default))) {
+            uriBuilder.appendQueryParameter("section", section);
+        }
         // Create a new loader for the given URL
-        return new NewsLoader( this, REQUEST_URL );
+        return new NewsLoader(this, uriBuilder.toString());
 
     }
+
+    @Override
+    // This method initialize the contents of the Activity's options menu is selected.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    // This method is where we can setup the specific action that occurs when any of the items in the Options Menu are selected.
+    // This method passes the MenuItem that is selected.
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //To determine which item was selected and what action to take, call getItemId, which returns the unique ID for the menu item.
+        int id = item.getItemId();
+        if (id == R.id.action_setting) {
+            Intent settingsIntent = new Intent(this, news_settings.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
