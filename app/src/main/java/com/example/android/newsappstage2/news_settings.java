@@ -22,7 +22,6 @@ public class news_settings extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_settings);
     }
-
     public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
         @Override
@@ -36,7 +35,7 @@ public class news_settings extends AppCompatActivity{
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
 
-            Preference section = findPreference(getString(R.string.settings_section_news_key));
+            Preference section = findPreference( getString( R.string.settings_segment_news_key ) );
             bindPreferenceSummaryToValue(section);
         }
 

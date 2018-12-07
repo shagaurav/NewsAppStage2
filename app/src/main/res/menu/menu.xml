@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HomeActivity">
     <item
-        android:id="@+id/action_setting"
+        android:id="@+id/menu_setting"
         android:title="@string/settings_title" />
 </menu>

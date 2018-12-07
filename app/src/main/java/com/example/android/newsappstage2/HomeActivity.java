@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
      * URL for news data from the Gaurdians dataset
      */
     private static final String REQUEST_URL =
-            "http://content.guardianapis.com/search?section=games&show-tags=contributor&format=json&lang=en&order-by=newest&show-fields=thumbnail&page-size=50&api-key=4b8ea716-b82a-40db-9665-d17c535526e8";
+            "http://content.guardianapis.com/search";
     private NewsAdapter mAdapter;
     private TextView mNoContentTextView;
 
@@ -117,7 +117,7 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String minNews = sharedPrefs.getString(getString(R.string.settings_min_news_key), getString(R.string.settings_min_news_default));
         String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
-        String section = sharedPrefs.getString(getString(R.string.settings_section_news_key), getString(R.string.settings_section_news_default));
+        String section = sharedPrefs.getString( getString( R.string.settings_segment_news_key ), getString( R.string.settings_segment_news_default ) );
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(REQUEST_URL);
@@ -125,13 +125,17 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        // Append query parameter and its value. For example, the `format=geojson`
-        uriBuilder.appendQueryParameter("api-key", "test");
-        uriBuilder.appendQueryParameter("show-tags", "contributor");
-        uriBuilder.appendQueryParameter("page-size", minNews);
-        uriBuilder.appendQueryParameter("order-by", orderBy);
+        // Append query parameter and its value.
+        // For example, the `format=geojson`
+        // append query parameter
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_q ), getString( R.string.value_q ) );
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_from_date ), getString( R.string.value_year_month_day ) );
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_apikey ), getString( R.string.value_apikey ) );
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_showtags ), getString( R.string.value_showtags ) );
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_orderby ), orderBy );
+        uriBuilder.appendQueryParameter( getString( R.string.parameter_pagesize ), minNews );
 
-        if (!section.equals(getString(R.string.settings_section_news_default))) {
+        if (!section.equals( getString( R.string.settings_segment_news_default ) )) {
             uriBuilder.appendQueryParameter("section", section);
         }
         // Create a new loader for the given URL
@@ -153,7 +157,7 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
     public boolean onOptionsItemSelected(MenuItem item) {
         //To determine which item was selected and what action to take, call getItemId, which returns the unique ID for the menu item.
         int id = item.getItemId();
-        if (id == R.id.action_setting) {
+        if (id == R.id.menu_setting) {
             Intent settingsIntent = new Intent(this, news_settings.class);
             startActivity(settingsIntent);
             return true;

@@ -4,6 +4,7 @@
 
     <EditTextPreference
         android:defaultValue="@string/settings_min_news_default"
+        android:background="@color/news_settings_edit_background"
         android:inputType="numberDecimal"
         android:key="@string/settings_min_news_key"
         android:selectAllOnFocus="true"
@@ -17,11 +18,10 @@
         android:title="@string/settings_order_by_label" />
 
     <ListPreference
-        android:defaultValue="@string/settings_section_news_default"
+        android:defaultValue="@string/settings_segment_news_default"
         android:entries="@array/settings_section_labels"
         android:entryValues="@array/settings_section_values"
-        android:key="@string/settings_section_news_key"
-        android:title="@string/settings_section_label" />
-
+        android:key="@string/settings_segment_news_key"
+        android:title="@string/settings_segment_label" />
 
 </PreferenceScreen>

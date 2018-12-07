@@ -5,13 +5,10 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/padding">
 
-
-
     <TextView
         android:id="@+id/articletitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/black"
         tools:text="@string/title" />
@@ -19,7 +16,6 @@
     <TextView
         android:id="@+id/articlecategory"
         style="@style/list_styling"
-
         android:layout_below="@id/articletitle"
         tools:text="@string/category" />
 
@@ -37,4 +33,5 @@
         android:layout_below="@id/articledate"
         android:layout_alignParentEnd="true"
         tools:text="@string/author" />
+
 </RelativeLayout>

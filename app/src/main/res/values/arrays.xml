@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_order_by_labels">
+        <item>@string/settings_order_by_newest_news_label</item>
+        <item>@string/settings_order_by_relevance_news_label</item>
+        <item>@string/settings_order_by_oldest_news_label</item>
+    </string-array>
+
+    <string-array name="settings_order_by_values">
+        <item>@string/settings_order_by_newest_news_value</item>
+        <item>@string/settings_order_by_relevance_news_value</item>
+        <item>@string/settings_order_by_oldest_news_value</item>
+    </string-array>
+
+    <string-array name="settings_section_labels">
+        <item>@string/settings_segment_all_news_label</item>
+        <item>@string/settings_segment_sport_news_label</item>
+        <item>@string/settings_segment_fashion_news_label</item>
+        <item>@string/settings_segment_business_news_label</item>
+        <item>@string/settings_segment_games_news_label</item>
+        <item>@string/settings_segment_books_news_label</item>
+        <item>@string/settings_segment_film_news_label</item>
+        <item>@string/settings_segment_lifeandstyle_news_label</item>
+        <item>@string/settings_segment_technology_news_label</item>
+        <item>@string/settings_segment_world_news_label</item>
+    </string-array>
+
+    <string-array name="settings_section_values">
+        <item>@string/settings_segment_all_news_value</item>
+        <item>@string/settings_segment_sport_news_value</item>
+        <item>@string/settings_segment_fashion_news_value</item>
+        <item>@string/settings_segment_business_news_value</item>
+        <item>@string/settings_segment_games_news_value</item>
+        <item>@string/settings_segment_books_news_value</item>
+        <item>@string/settings_segment_film_news_value</item>
+        <item>@string/settings_segment_lifeandstyle_news_value</item>
+        <item>@string/settings_segment_technology_news_value</item>
+        <item>@string/settings_segment_world_news_value</item>
+    </string-array>
+</resources>
