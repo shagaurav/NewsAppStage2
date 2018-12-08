@@ -136,11 +136,10 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         uriBuilder.appendQueryParameter( getString( R.string.parameter_pagesize ), minNews );
 
         if (!section.equals( getString( R.string.settings_segment_news_default ) )) {
-            uriBuilder.appendQueryParameter("section", section);
+            uriBuilder.appendQueryParameter( getString( R.string.section ), section );
         }
         // Create a new loader for the given URL
         return new NewsLoader(this, uriBuilder.toString());
-
     }
 
     @Override
@@ -164,5 +163,4 @@ public class HomeActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

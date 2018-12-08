@@ -25,6 +25,29 @@
     <!-- Authors of the NEWS App-->
     <string name="author">M.Sophos, R.Zangrande, G.C.Barlog</string>
 
+    <!-- Authors of the NEWS App-->
+    <string name="method_GET">GET</string>
+
+    <!-- Authors of the NEWS App-->
+    <string name="error_response_code_message">Error response code: </string>
+
+    <!-- Authors of the NEWS App-->
+    <string name="utf_8">UTF-8</string>
+
+    <!-- JSON response string-->
+    <string name="json_response">response</string>
+    <string name="json_results_array">results</string>
+
+
+    <string name="web_title">webTitle</string>
+    <string name="section_name">sectionName</string>
+    <string name="web_publication_date">webPublicationDate</string>
+    <string name="web_url">webUrl</string>
+    <string name="tags">tags</string>
+    <string name="zero">0</string>
+
+    <string name="no_author">No Author ..</string>
+
     <string name="fields_object">fields</string>
 
     <string name="thumbnail">thumbnail</string>
@@ -47,6 +70,7 @@
     <string name="parameter_apikey">api-key</string>
     <string name="value_year_month_day" tools:ignore="TypographyDashes">2018-11-01</string>
     <string name="value_apikey" tools:ignore="TypographyDashes">4b8ea716-b82a-40db-9665-d17c535526e8</string>
+    <string name="section">section</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="blank_fragment">Blank fragment</string>

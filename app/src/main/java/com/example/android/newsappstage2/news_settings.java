@@ -14,8 +14,6 @@ import android.support.v7.app.AppCompatActivity;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  */
-
-
 public class news_settings extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {

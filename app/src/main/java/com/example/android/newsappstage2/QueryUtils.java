@@ -1,5 +1,6 @@
 package com.example.android.newsappstage2;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,20 +30,20 @@ public class QueryUtils {
     /**
      * Query the Gaurdians dataset and return a list of {@link News} objects.
      */
-    public static List<News> fetchNewsData(String requestUrl) {
+    public static List<News> fetchNewsData(String requestUrl, Context context) {
         // Create URL object
         URL url = createUrl( requestUrl );
 
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
-            jsonResponse = makeHttpRequest( url );
+            jsonResponse = makeHttpRequest( url, context );
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link News}
-        List<News> newsList = extractFeatureFromJson( jsonResponse );
+        List<News> newsList = extractFeatureFromJson( jsonResponse, context );
 
         // Return the list of {@link News}
         return newsList;
@@ -65,7 +66,7 @@ public class QueryUtils {
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
-    private static String makeHttpRequest(URL url) throws IOException {
+    private static String makeHttpRequest(URL url, Context context) throws IOException {
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -79,16 +80,16 @@ public class QueryUtils {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout( 10000 /* milliseconds */ );
             urlConnection.setConnectTimeout( 15000 /* milliseconds */ );
-            urlConnection.setRequestMethod( "GET" );
+            urlConnection.setRequestMethod( context.getString( R.string.method_GET ) );
             urlConnection.connect();
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
-                jsonResponse = readFromStream( inputStream );
+                jsonResponse = readFromStream( inputStream, context );
             } else {
-                Log.d( "Error response code: ", String.valueOf( urlConnection.getResponseCode() ) );
+                Log.d( context.getString( R.string.error_response_code_message ), String.valueOf( urlConnection.getResponseCode() ) );
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,10 +111,10 @@ public class QueryUtils {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    private static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(InputStream inputStream, Context context) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
-            InputStreamReader inputStreamReader = new InputStreamReader( inputStream, Charset.forName( "UTF-8" ) );
+            InputStreamReader inputStreamReader = new InputStreamReader( inputStream, Charset.forName( context.getString( R.string.utf_8 ) ) );
             BufferedReader reader = new BufferedReader( inputStreamReader );
             String line = reader.readLine();
             while (line != null) {
@@ -128,7 +129,7 @@ public class QueryUtils {
      * Return a list of {@link News} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<News> extractFeatureFromJson(String newsJSON) {
+    private static List<News> extractFeatureFromJson(String newsJSON, Context context) {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty( newsJSON )) {
             return null;
@@ -136,14 +137,12 @@ public class QueryUtils {
 
         // Create an empty ArrayList that we can start adding news to
         List<News> newsList = new ArrayList<>();
-
-
         try {
 
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject( newsJSON );
-            JSONObject response = baseJsonResponse.getJSONObject( "response" );
-            JSONArray resultsArray = response.getJSONArray( "results" );
+            JSONObject response = baseJsonResponse.getJSONObject( context.getString( R.string.json_response ) );
+            JSONArray resultsArray = response.getJSONArray( context.getString( R.string.json_results_array ) );
 
             // For each news in the newsArray, create an {@link News} object
             for (int i = 0; i < resultsArray.length(); i++) {
@@ -151,20 +150,19 @@ public class QueryUtils {
                 // Get a single news at position i within the list of news
                 JSONObject currentResults = resultsArray.getJSONObject( i );
 
-                String Title = currentResults.getString( "webTitle" );
-                String category = currentResults.getString( "sectionName" );
-                String date = currentResults.getString( "webPublicationDate" );
-                String url = currentResults.getString( "webUrl" );
+                String Title = currentResults.getString( context.getString( R.string.web_title ) );
+                String category = currentResults.getString( context.getString( R.string.section_name ) );
+                String date = currentResults.getString( context.getString( R.string.web_publication_date ) );
+                String url = currentResults.getString( context.getString( R.string.web_url ) );
 
-                JSONArray tagsauthor = currentResults.getJSONArray( "tags" );
+                JSONArray tagsauthor = currentResults.getJSONArray( context.getString( R.string.tags ) );
                 String author = "";
                 if (tagsauthor.length() != 0) {
                     JSONObject currenttagsauthor = tagsauthor.getJSONObject( 0 );
-                    author = currenttagsauthor.getString( "webTitle" );
+                    author = currenttagsauthor.getString( context.getString( R.string.web_title ) );
                 } else {
-                    author = "No Author ..";
+                    author = context.getString( R.string.no_author );
                 }
-
 
                 // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
